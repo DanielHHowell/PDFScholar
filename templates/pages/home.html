@@ -1,0 +1,40 @@
+{% extends 'layouts/main.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+<!doctype html>
+<title>PDF Scholar</title>
+<h3>Upload a new document</h3>
+<p>
+	{% with messages = get_flashed_messages() %}
+	  {% if messages %}
+		<ul class=flashes>
+		{% for message in messages %}
+		  <li>{{ message }}</li>
+		{% endfor %}
+		</ul>
+	  {% endif %}
+	{% endwith %}
+</p>
+<form method="post" action="/" enctype="multipart/form-data">
+    <dl>
+		<p>
+			<input type="file" name="file" autocomplete="off" required>
+		</p>
+    </dl>
+    <p>
+		<input type="submit" value="Submit">
+	</p>
+</form>
+<br>
+<h3>Browse existing repository</h3>
+<p>Original uploads in PDF folder - extracted versions for web viewing in TXT</p>
+    <ul>
+        {% for item in itemList %}
+        <li><a href="/browser{{ urlFilePath }}/{{ item }}">{{ item }}</a></li>
+        {% endfor %}
+    </ul>
+
+
+
+{% endblock %}
