@@ -25,11 +25,11 @@ app.secret_key = secrets.token_urlsafe(16)
 UPLOAD_FOLDER = ''
 
 for i in sys.path:
-	if 'DanielHHowell' in i:
-		UPLOAD_FOLDER += '/home/DanielHHowell/pdfscholar/files'
+	if 'Pycharm' in i:
+		UPLOAD_FOLDER += '/home/daniel/PycharmProjects/pdfscholar/files'
 		break
 	else:
-		UPLOAD_FOLDER += '/home/daniel/PycharmProjects/pdfscholar/files'
+		UPLOAD_FOLDER += '/home/DanielHHowell/pdfscholar/files'
 		break
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
