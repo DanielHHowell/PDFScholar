@@ -11,6 +11,7 @@ import os
 import secrets
 import stat
 from tika import parser
+import sys
 
 # ----------------------------------------------------------------------------#
 # App Config.
@@ -20,7 +21,15 @@ app = Flask(__name__)
 app.config.from_object('config')
 app.secret_key = secrets.token_urlsafe(16)
 
-UPLOAD_FOLDER = '/home/daniel/PycharmProjects/pdfscholar/files'
+
+UPLOAD_FOLDER = ''
+
+for i in sys.path:
+	if 'DanielHHowell' in i:
+		UPLOAD_FOLDER += '/home/DanielHHowell/pdfscholar/files'
+	else:
+		UPLOAD_FOLDER += '/home/daniel/PycharmProjects/pdfscholar/files'
+
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024 * 1024
 
