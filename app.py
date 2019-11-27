@@ -2,7 +2,7 @@
 # Imports
 # ----------------------------------------------------------------------------#
 
-from flask import Flask, flash, request, redirect, render_template
+from flask import Flask, flash, request, redirect, render_template, Response
 from werkzeug.utils import secure_filename  # from flask.ext.sqlalchemy import SQLAlchemy
 import logging
 from logging import Formatter, FileHandler
@@ -96,7 +96,7 @@ def upload_file():
 # 	flash('Allowed file types are TXT, pdf, png, jpg, jpeg, gif')
 # 	return redirect(request.url)
 
-@app.route('/browser/<path:urlFilePath>')
+@app.route('/browser/<path:urlFilePath>/file')
 def browser(urlFilePath):
     nestedFilePath = os.path.join(UPLOAD_FOLDER, urlFilePath)
     if os.path.isdir(nestedFilePath):
@@ -108,6 +108,7 @@ def browser(urlFilePath):
     if os.path.isfile(nestedFilePath):
         if not urlFilePath.startswith("/"):
             urlFilePath = "/" + urlFilePath
+            print(urlFilePath)
         with open(nestedFilePath, 'r') as f:
             text = f.read()
             groups = text.split("\n")
@@ -117,8 +118,8 @@ def browser(urlFilePath):
                     if (j[-1] == ' ') or (j[-1] == '-'):
                         paragraphs[i:i + 2] = [''.join(paragraphs[i:i + 2])]
         return render_template('pages/file.html', text=paragraphs)
+        # return Response(text, mimetype='text/plain')
     return 'something bad happened'
-
 
 # Error handlers.
 
