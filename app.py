@@ -27,8 +27,10 @@ UPLOAD_FOLDER = ''
 for i in sys.path:
 	if 'DanielHHowell' in i:
 		UPLOAD_FOLDER += '/home/DanielHHowell/pdfscholar/files'
+		break
 	else:
 		UPLOAD_FOLDER += '/home/daniel/PycharmProjects/pdfscholar/files'
+		break
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024 * 1024
